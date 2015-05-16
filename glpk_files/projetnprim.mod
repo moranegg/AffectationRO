@@ -25,7 +25,9 @@ s.t. ram{j in 1..m}: sum{i in 1..n}a[j,i]* x[j,i]<=b[j];
 s.t. affect{i in 1..n}: sum{j in 1..m} x[j,i] <=1;
 
 s.t. decision{i in 1..n}: sum{j in 1..m} x[j,i] = y[i];
-s.t. decisionTotale: sum{i in 1..n} y[i] >=nprim;
+s.t. decisionTotale: sum{i in 1..n} y[i] =nprim;
+/*Le nombre minimal de taches a executer dans un model qui cherche a minimiser sera toujours l'optimal*/
+/*Donc, nous pouvons garder une égalité */
 
 
 
