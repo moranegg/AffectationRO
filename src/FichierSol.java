@@ -75,7 +75,7 @@ public class FichierSol  {
 		double[][] affectTache;
 		int execTacheLigne = 1000;
 		double [] execTache =null;
-		boolean isNprim;
+		int endLigne= 10000;
 		try{
 			String[] tab = fichierToString.split("\n");
 			
@@ -103,14 +103,19 @@ public class FichierSol  {
 				}else if(tab[i].startsWith("affectation")){
 					affectTacheLigne = i;
 				//retrover la ligne de la solution d'execution
-				}else if(tab[i].startsWith("execution")|| tab[i].startsWith("Model") ){
+				}else if(tab[i].startsWith("execution") ){
 					execTacheLigne = i;
+				
+				
+				//retrover la ligne de la solution d'execution
+				}else if(tab[i].startsWith("Model") ){
+					endLigne = i;
 				
 				}
 			}
 			
 			affectTache = this.affectTab(affectTacheLigne, execTacheLigne, tab, 
-					 nbTaches, nbProcesseurs);
+					 nbTaches, nbProcesseurs, endLigne);
 			if(nbTacheMin != 0){
 				execTache = this.execTab(execTacheLigne, tab, 
 						 nbTaches);
@@ -137,10 +142,11 @@ public class FichierSol  {
 	 * @param nbProcesseurs
 	 * @return
 	 */
-	public double[][] affectTab(int affectTacheLigne, int execTacheLigne, String[] tab, int nbTaches, int nbProcesseurs){
+	public double[][] affectTab(int affectTacheLigne, int execTacheLigne, String[] tab, int nbTaches, 
+			int nbProcesseurs, int endLigne){
 		double[][] affect = new double[nbTaches][nbProcesseurs];
 		
-		for(int i=affectTacheLigne+1; i<execTacheLigne ;i++){
+		for(int i=affectTacheLigne+1; i<execTacheLigne && i<endLigne ;i++){
 			String[] temp = tab[i].split(" ");
 			for(int j = 0; j< temp.length-1; j++){
 				double ajouter= Double.parseDouble(temp[j].trim());
