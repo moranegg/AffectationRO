@@ -21,20 +21,21 @@ Paramètres:
  * b[] : quantité de RAM disponible sur chaque processeur
  * c[][] :coût d'affectation d'une tâche à un processeur
  * a[][] :RAM nécessaire pour une tâches i sur processeur j
- ** nprim : nombre minimale de tâches à exécuter
+ * nprim : nombre minimale de tâches à exécuter
  
 Variables:
 
  * x[][] : affectation d'une tâche i à un processeur j
+ * y[] : dans le cas d'une exécution d'un minimum de tâches n'
  
 Contraintes:
 
  * quantité de Ram sur processeur j est limité à b[j]-> la somme de a[i,j]<=b[j] pour un processeur j
  * Une tâche s'exécute seulement une seule fois -> la somme de x[i,j] = 1 pour une tâche i
  
- Objectif:
+Objectif:
  
- *trouver le Min des coût d'exécution
+ * trouver le Min des coût d'exécution
 
 
  
@@ -48,13 +49,13 @@ Assurer vous d'avoir GLPK installé:
  * puis d'avoir configurer le chemin pour exécuter glpsol.exe 
 
 Pour utiliser les fichiers :
-*option A:
+* option A:
 	 * ouvrez cmd et placer vous dans le dossier où se trouve le fichier
 	 * exécutez et recupérez la solution: glpsol -m projet.mod -d nomFichierData.DAT > fictest.txt
-*option B:
-	*lancez en cmd projet.bat projet.mod nomFichierData.DAT fictest.txt
+* option B:
+	* lancez en cmd projet.bat projet.mod nomFichierData.DAT fictest.txt
 	
-*Puis, pour une solution entière
+* Puis, pour une solution entière
  * placez fictest.txt dans le repertoire du programme java
  * lancez programme java pour afficher une solution entière avec fictest.txt
 
