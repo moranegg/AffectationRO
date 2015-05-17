@@ -46,7 +46,7 @@ Instructions (dans un système Windows)
 Assurer vous d'avoir GLPK installé:
 
  * GLPK pour windows : <a href="http://winglpk.sourceforge.net/">télécharger ici</a>
- * puis d'avoir configurer le chemin pour exécuter glpsol.exe 
+ * Configurer le chemin pour exécuter glpsol.exe 
 
 Pour utiliser les fichiers :
 * option A:
@@ -73,7 +73,7 @@ classes Importante:
 
 | Class | Description |
 | ----- | ----------- |
-| Client | main-> affichage de la solution à pertir d'un fichier texte|
+| Client | main-> affichage de la solution à partir d'un fichier texte|
 | FichierSol | Lecture d'un fichier texte et transformation en Solution |
 | Solution | Objet solution - gère la transformation en solution entière |
 
