@@ -6,7 +6,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 
-
+/**
+ * Un objet de lecture de fichier txt et sa transformation en solution
+ * @author Morane Otilia
+ *
+ */
 public class FichierSol  {
 	private String nomPhysique; //nom du fichier 
 	private File fichier;

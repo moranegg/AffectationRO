@@ -47,7 +47,10 @@ public class Solution {
 		this.isMinTaches = false;
 		
 	}
-	
+	/**
+	 * getters et setters
+	 * @return
+	 */
 	public int getNbTaches() {
 		return nbTaches;
 	}
@@ -84,7 +87,10 @@ public class Solution {
 	public void setExecTache(double[] execTache) {
 		this.execTache = execTache;
 	}
-	
+	/**
+	 * Imprime la solution, en transformant les tableaux de double en entiers à la sortie
+	 * @return
+	 */
 	public String printSolution(){
 		String sol="";
 		sol +="Problème d'affectation\n";
@@ -103,6 +109,10 @@ public class Solution {
 		return sol;
 		
 	}
+	/**
+	 * transforme le tableau d'affectation de la solution en entiers par String
+	 * @return
+	 */
 	public String solEnEntiers(){
 		String sol ="";
 		for(int i= 0; i<this.affectTache.length ;i++){
@@ -115,6 +125,10 @@ public class Solution {
 		
 		return sol;
 	}
+	/**
+	 * transforme le tableau de l'exécution des tâches en entiers affichable par String
+	 * @return
+	 */
 	public String solExecEnEntiers(){
 		String sol ="";
 		for(int i= 0; i<this.execTache.length ;i++){
