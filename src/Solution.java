@@ -88,6 +88,7 @@ public class Solution {
 	public String printSolution(){
 		String sol="";
 		sol +="Problème d'affectation\n";
+		sol += "cout minimal:"+ this.sum + "\n";
 		sol +="nombre de taches (n): "+ this.nbTaches + "\n";
 		if(this.isMinTaches){
 			sol +="nombre minimal de taches (n'): "+ this.nbTacheMin+ "\n";
