@@ -50,12 +50,30 @@ for {i in 1..n}
     printf "\n";
 	
 }
-printf "execution \n";
- for {i in 1..n}
+
+printf "ram dispo \n";
+for{j in 1..m}
+{
+	printf "%d \n", (b[j]);
+
+}
+printf "cout \n";
+for {i in 1..n}
+{
+    for {j in 1..m}
     {
-        printf "%f ", (y[i]);
+        printf "%d ", (c[j,i]);
     }
     printf "\n";
-
+}
+printf "demande ram \n";
+for {i in 1..n}
+{
+    for {j in 1..m}
+    {
+        printf "%d ", (a[j,i]);
+    }
+    printf "\n";
+}
 
 end;

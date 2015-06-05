@@ -54,9 +54,9 @@ public class FichierSol  {
 			}
 
 		} catch (FileNotFoundException e ) {
-			System.out.println("lecture fichier nouveau fichier à créer");
+			System.out.println("Le fichier n'est pas trouvé");
 		} catch (IOException e){
-			System.out.println ("lecture fichier problem de lecture");
+			System.out.println ("problem de lecture de fichier");
 		}
 		return sol;
 	}
@@ -71,15 +71,22 @@ public class FichierSol  {
 	 */
 	public Solution fichierToSolution(){
 		Solution sol= null;
+		Problem pb = null;
 		int nbTaches = 0;
 		int nbProcesseurs = 0;
 		double sum= 0;
 		int nbTacheMin =0;
 		int affectTacheLigne = 0;
 		double[][] affectTache;
-		int execTacheLigne = 1000;
-		double [] execTache =null;
+
+		
+		int ramDispoLigne = 10000;
+		int coutLigne=10000;
+		int[][] c;
+		int demandeRamLigne=10000;
+		int[][] a;
 		int endLigne= 10000;
+		
 		try{
 			String[] tab = fichierToString.split("\n");
 			
@@ -103,38 +110,53 @@ public class FichierSol  {
 					String[] temp = tab[i].split("=");
 					nbTacheMin = (int)Math.round(Double.parseDouble(temp[1].trim()));
 					
-				//retrover la ligne de la solution d'affectation
+				//retrouver la ligne de la solution d'affectation
 				}else if(tab[i].startsWith("affectation")){
 					affectTacheLigne = i;
-				//retrover la ligne de la solution d'execution
-				}else if(tab[i].startsWith("execution") ){
-					execTacheLigne = i;
 				
+				//retrouver la ligne de sorti des contraintes sur les processeurs
+				}else if(tab[i].startsWith("ram dispo") ){
+					ramDispoLigne = i;
 				
-				//retrover la ligne de la solution d'execution
+				//retrouver la ligne de la table des couts
+				}else if(tab[i].startsWith("cout") ){
+					coutLigne = i;
+				
+				//retrouver la ligne de la demade de ram par tache
+				}else if(tab[i].startsWith("demande ram") ){
+					demandeRamLigne = i;		
+				
 				}else if(tab[i].startsWith("Model") ){
 					endLigne = i;
-				
 				}
 			}
-			
-			affectTache = this.affectTab(affectTacheLigne, execTacheLigne, tab, 
+			//pour la solution glpk
+			affectTache = this.affectTab(affectTacheLigne, ramDispoLigne, tab, 
 					 nbTaches, nbProcesseurs, endLigne);
-			if(nbTacheMin != 0){
-				execTache = this.execTab(execTacheLigne, tab, 
-						 nbTaches);
-				sol = new Solution(nbTaches, nbProcesseurs, sum,  nbTacheMin,
-				 affectTache,  execTache);
-			}else{
-				sol = new Solution(nbTaches, nbProcesseurs, sum, 
-						 affectTache);
-			}
+			//pour le probleme
+			int ramDispo[] = this.ramTab(ramDispoLigne,tab,nbProcesseurs);
+			int affectationRam [][]=this.tabInteger2D(demandeRamLigne, tab, nbProcesseurs, nbTaches);
+			int cout[][]= this.tabInteger2D(coutLigne, tab, nbProcesseurs, nbTaches);
 			
+			if(nbTacheMin != 0){
+				//creation du problem
+				pb = new Problem(nbTaches,nbProcesseurs,nbTacheMin, ramDispo,affectationRam,cout);
+				 // creation de solution
+				sol = new SolutionFractionnaire(pb,sum,  
+				 affectTache);
+				
+			}else{
+				//creation du problem
+				pb = new Problem(nbTaches,nbProcesseurs, ramDispo,affectationRam,cout);
+				// creation de solution
+				sol = new SolutionFractionnaire(pb, sum, 
+						 affectTache);
+				
+			}
 		}catch(Exception e){
 			System.out.println(e.toString());
 			
 		}
-		
 		return sol;
 	}
 	/**
@@ -162,22 +184,39 @@ public class FichierSol  {
 		
 		return affect;
 	}
+
+
 	/**
-	 * Transforme le texte en tableaux de double
-	 * @param execTacheLigne
-	 * @param tab
-	 * @param nbTaches
-	 * @return
+	 * Retourne le tableau des disponibilités de Ram sur les processeurs
 	 */
-	public double[] execTab(int execTacheLigne, String[] tab, int nbTaches){
-		double[] exec = new double[nbTaches];
+	public int[] ramTab(int debutLigne, String[] tab, int nbProcesseurs){
+		int[] ram = new int[nbProcesseurs];
+		int finTable = debutLigne +1 + nbProcesseurs;
 		
-		for(int i=execTacheLigne+1; i<tab.length-1 ;i++){
-			double ajouter= Double.parseDouble(tab[i].trim());
-			exec[i-execTacheLigne-1]= ajouter;
+		for(int i=debutLigne+1; i<finTable ;i++){
+			int ajouter= Integer.parseInt(tab[i].trim());
+			ram[i-debutLigne-1]= ajouter;
 			
 		}
-		return exec;
+		return ram;
+	}
+	/**
+	 * Retourne un tableau d'entiers, pour les données de coût et d'affectation du problème
+	 */
+	public int[][] tabInteger2D(int debutLigne, String[] tab, int nbProcesseurs, int nbTaches){
+		int[][] result = new int[nbTaches][nbProcesseurs];
+		int finTable = debutLigne +1 + nbTaches;
+		
+		for(int i=debutLigne+1; i<finTable ;i++){
+			String[] temp = tab[i].split(" ");
+			for(int j = 0; j< temp.length-1; j++){
+				int ajouter= Integer.parseInt(temp[j].trim());
+				result[i-debutLigne-1][j] = ajouter;
+				
+			}
+			
+		}
+		return result;
 	}
 	
 }
