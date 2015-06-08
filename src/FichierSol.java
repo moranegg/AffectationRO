@@ -5,6 +5,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import model.Problem;
+import model.Solution;
+import model.SolutionFractionnaire;
+
 
 /**
  * Un objet de lecture de fichier txt et sa transformation en solution

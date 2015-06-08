@@ -1,3 +1,4 @@
+package model;
 import java.util.HashMap;
 
 /**
@@ -18,12 +19,7 @@ public class Problem {
 	/*RAM d'une tache sur un processeur*/
 	private int  c[][] = new int[n][m];  
 	/*cout d'affectation*/
-	
-	private HashMap<Double, Solution> optim= new HashMap<Double,Solution>();
-	/*Repertoire des solutions non-realisables*/
-	private HashMap<Double, Solution> optimRealisable= new HashMap<Double,Solution>();
-	/*Repertoire des solutions realisables*/
-	
+
 	/**
 	 * Constructeur de probleme avec nombre de taches minimal (nprim)
 	 * @param nbTaches
@@ -126,18 +122,11 @@ public class Problem {
 			if (ramTotal[i] > b[i]){
 				System.out.println("solution: "+ramTotal[i]+" > "+b[i]);
 				isSol = false;
+			}else{
+				System.out.println("solution: "+ramTotal[i]+" < "+b[i]);
 			}
-			System.out.println("solution: "+ramTotal[i]+" < "+b[i]);
 		}
-		/**
-		 * Pendant la vérification, création d'un repertoire de solutions réalisable et non réalisable 
-		 * avec leur résultat en tant que clé
-		 */
-		if(isSol){
-			optimRealisable.put(sol.getSum(), sol);
-		}else{
-			optim.put(sol.getSum(), sol);
-		}
+		
 		return isSol;
 	}
 }

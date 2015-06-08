@@ -1,3 +1,5 @@
+package model;
+
 /**
  * Une Solution abstraite pour définir une solution générique qui peut être fractionnaire ou entière 
  * @author Morane Otilia

@@ -1,3 +1,5 @@
+package model;
+
 /**
  * Une Solution est créé à partir d'un fichier txt après une génération de celui-ci avec glpk
  * @author Morane Otilia

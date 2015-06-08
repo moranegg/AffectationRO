@@ -1,3 +1,5 @@
+import model.Solution;
+
 /**
  * L'execution complète de la transformation d'un fichier txt (généré à partir du solveur GLPK avec fichier .mod 
  * et fichier .dat) en Objet Solution et l'affichage de celui-ci. 
