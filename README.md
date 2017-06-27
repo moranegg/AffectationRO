@@ -1,6 +1,8 @@
 projet en Recherche Opérationelle
 =================================
 
+[![DOI](https://zenodo.org/badge/35734299.svg)](https://zenodo.org/badge/latestdoi/35734299)
+
 Problème d'affectation généralisée
 ----------------------------------
 un système distribué comme un ensemble de processeurs
