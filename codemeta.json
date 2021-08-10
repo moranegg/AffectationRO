@@ -1,0 +1,36 @@
+{
+    "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+    "@type": "SoftwareSourceCode",
+    "license": "https://spdx.org/licenses/AGPL-3.0",
+    "codeRepository": "https://github.com/moranegg/AffectationRO",
+    "dateCreated": "2014-01-01",
+    "dateModified": "2019-06-26",
+    "name": "AffectationRO- The assignment problem",
+    "version": "1.0.0",
+    "description": "A java implementation for The Assignment Problem  a distributed system as a set of processors that can perform tasks (or processes) in parallel. We therefore consider a set of m processors, each equipped with a certain amount of random access memory (RAM).\\r\\n We associate a cost to pay to perform this task on this processor, and each pair of tasks is associated with a communication cost. The Assignment problem works on minimizing the cost and maximizing the  tasks performed.",
+    "applicationCategory": "info",
+    "releaseNotes": "First release with GLPK, in Beta testing",
+    "developmentStatus": "concept",
+    "keywords": [
+        "distributed systems",
+        "glpk",
+        "optimisation",
+        "OR"
+    ],
+    "programmingLanguage": [
+        "Java"
+    ],
+    "author": [
+        {
+            "@type": "Person",
+            "@id": "https://orcid.org/0000-0002-9777-5560",
+            "givenName": "Morane",
+            "familyName": "Gruenpeter",
+            "email": "morane.gg@gmail.com",
+            "affiliation": {
+                "@type": "Organization",
+                "name": "Software Heritage"
+            }
+        }
+    ]
+}
